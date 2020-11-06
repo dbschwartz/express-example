@@ -2,6 +2,9 @@ const { models } = require('../../sequelize');
 const { getIdParam } = require('../helpers');
 
 async function getAll(req, res) {
+	const limit = req.query.limit || 50;
+	const offset = req.query.offset || 0;
+
 	const users = await models.user.findAll({
 		attributes: ['id', 'firstName', 'lastName'],
 		limit: req.query.limit,
