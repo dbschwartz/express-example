@@ -12,14 +12,24 @@ module.exports = (sequelize) => {
 			primaryKey: true,
 			type: DataTypes.INTEGER
 		},
-		username: {
+		firstName: {
 			allowNull: false,
 			type: DataTypes.STRING,
-			unique: true,
+			unique: false,
 			validate: {
 				// We require usernames to have length of at least 3, and
 				// only use letters, numbers and underscores.
-				is: /^\w{3,}$/
+				is: /^[a-zA-Z\d-' ]+$/
+			}
+		},
+		lastName: {
+			allowNull: false,
+			type: DataTypes.STRING,
+			unique: false,
+			validate: {
+				// We require usernames to have length of at least 3, and
+				// only use letters, numbers and underscores.
+				is: /^[a-zA-Z\d-' ]+$/
 			}
 		},
 	});

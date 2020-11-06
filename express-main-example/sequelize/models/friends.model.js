@@ -3,18 +3,16 @@ const { DataTypes } = require('sequelize');
 // We export a function that defines the model.
 // This function will automatically receive as parameter the Sequelize connection object.
 module.exports = (sequelize) => {
-	sequelize.define('orchestra', {
+	sequelize.define('friends', {
 		// The following specification of the 'id' attribute could be omitted
 		// since it is the default.
-		id: {
+		friend1: {
 			allowNull: false,
-			autoIncrement: true,
-			primaryKey: true,
 			type: DataTypes.INTEGER
 		},
-		name: {
+		friend2: {
 			allowNull: false,
-			type: DataTypes.STRING
-		},
+			type: DataTypes.INTEGER
+		}
 	});
 };

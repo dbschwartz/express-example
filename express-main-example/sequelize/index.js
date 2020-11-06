@@ -13,10 +13,9 @@ const sequelize = new Sequelize({
 
 const modelDefiners = [
 	require('./models/user.model'),
-	require('./models/instrument.model'),
-	require('./models/orchestra.model'),
+	require('./models/friends.model')
+
 	// Add more models here...
-	// require('./models/item'),
 ];
 
 // We define all models according to their files.

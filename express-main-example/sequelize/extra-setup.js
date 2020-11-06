@@ -1,8 +1,8 @@
 function applyExtraSetup(sequelize) {
-	const { instrument, orchestra } = sequelize.models;
+	const { user, friends } = sequelize.models;
+	user.belongsTo(friends, { as:'friend1', foreignKey: 'friend_1'});
+	user.belongsTo(friends, { as:'friend2', foreignKey: 'friend_2'});
 
-	orchestra.hasMany(instrument);
-	instrument.belongsTo(orchestra);
 }
 
-module.exports = { applyExtraSetup };
+module.exports = { applyExtraSetup };  

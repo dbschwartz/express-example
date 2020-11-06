@@ -1,5 +1,5 @@
 const sequelize = require('../sequelize');
-const { pickRandom, randomDate } = require('./helpers/random');
+//const { pickRandom, randomDate } = require('./helpers/random');
 
 async function reset() {
 	console.log('Will rewrite the SQLite example database, adding some dummy data.');
@@ -7,45 +7,47 @@ async function reset() {
 	await sequelize.sync({ force: true });
 
 	await sequelize.models.user.bulkCreate([
-		{ username: 'jack-sparrow' },
-		{ username: 'white-beard' },
-		{ username: 'black-beard' },
-		{ username: 'brown-beard' },
-	]);
-
-	await sequelize.models.orchestra.bulkCreate([
-		{ name: 'Jalisco Philharmonic' },
-		{ name: 'Symphony No. 4' },
-		{ name: 'Symphony No. 8' },
-	]);
-
-	// Let's create random instruments for each orchestra
-	for (const orchestra of await sequelize.models.orchestra.findAll()) {
-		for (let i = 0; i < 10; i++) {
-			const type = pickRandom([
-				'violin',
-				'trombone',
-				'flute',
-				'harp',
-				'trumpet',
-				'piano',
-				'guitar',
-				'pipe organ',
-			]);
-
-			await orchestra.createInstrument({
-				type: type,
-				purchaseDate: randomDate()
-			});
-
-			// The following would be equivalent in this case:
-			// await sequelize.models.instrument.create({
-			// 	type: type,
-			// 	purchaseDate: randomDate(),
-			// 	orchestraId: orchestra.id
-			// });
+		{
+			id: 0,
+		 	firstName: 'Eric',
+		 	lastName: 'Yuan'
+		 },
+		 { 
+			id: 1,
+			firstName: 'Mark',
+			lastName: 'Zuckerberg'
+		},
+		{
+			id: 2,
+			firstName: 'Jack',
+			lastName: 'Dorsey'
+		},
+		{
+			id: 3,
+			firstName: 'Kevin',
+			lastName: 'Systrom'
+		},
+		{
+			id: 4,
+			firstName: 'Tom',
+			lastName: 'Anderson'
 		}
-	}
+	]);
+
+	await sequelize.models.friends.bulkCreate([
+		{ 
+			friend1: 0,
+			friend2: 2
+		 },
+		 { 
+			friend1: 1,
+			friend2: 4
+		},
+		{ 
+			friend1: 1,
+			friend2: 2
+		}
+	]);
 
 	console.log('Done!');
 }
